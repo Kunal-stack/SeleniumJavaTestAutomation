@@ -35,26 +35,17 @@ public class BrowserTest {
 	}
 	@Test(dataProvider="test1data" ,dataProviderClass = ExcelDataProvider.class)
 	public void GoogleSearch(String Username) {
-		test1 = extent.createTest("Google Search test" , "To check the functionality of google search");
+		test1 = extent.createTest("Google Search test" , "To check the functionality of google search");//for initializing the extent report
 		test1.log(Status.INFO,"strating test case");
 		driver.get("https://google.com");
 		test1.pass("navigated to google.com");
 		
-		//data type for storing web element //WebElement textBox = driver.findElement(By.name("q"));
-		// to send input to selected element// textBox.sendKeys("kunal");
-		//If we want to refer different methods of the web page //GoogleSearchPage.textbox_search(driver);
-		//GoogleSearchPage.button_search(driver);
-		GoogleSearchPage SearchPageobj = new GoogleSearchPage(driver);//This is the object of the class googlesarchpage this object ask for a argument becuase the constructor on googlesearch page as for the argument everytime a object of that page is created
+		GoogleSearchPage SearchPageobj = new GoogleSearchPage(driver);//For invoking the GoogleSearchPage constructor and passing the web driver
 
-		SearchPageobj.textbox_search(Username);
+		SearchPageobj.textbox_search(Username);//for typing text in Google search bar
 		test1.pass("enter text in google search bar");
 		SearchPageobj.button_search();
 		test1.pass("pressed enter key");
-		
-		/*if we want to store multiple values then we can do the following
-		 * List<webelement>ListofInputElements = driver.getElements(By.xpath("//input")
-		 * System.out.print(ListofInputElements.size()); This will give the size of list
-		 * also xpath is the type of a locater which helps to identify the elements on the basis of their links */
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -71,8 +62,11 @@ public class BrowserTest {
 		
 		GoogleSearchPage SearchPageobj = new GoogleSearchPage(driver);
 		SearchPageobj.loginUsername(Username);
+		test2.pass("entered text in login box");
 		SearchPageobj.loginPassword(Password);
+		test2.pass("entered text in password box");
 		SearchPageobj.button_login();
+		test2.pass("pressed login button");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {

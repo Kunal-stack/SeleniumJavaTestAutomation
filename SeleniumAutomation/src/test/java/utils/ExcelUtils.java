@@ -10,13 +10,13 @@ public class ExcelUtils {
 	
 	public ExcelUtils(String excelPath , String sheetName) {//H
 		try {
-			workbook = new XSSFWorkbook(excelPath);
-			sheet = workbook.getSheet(sheetName);
+			workbook = new XSSFWorkbook(excelPath);//To link excel file with the project 
+			sheet = workbook.getSheet(sheetName);//for working on a particular sheet in excel file
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
-	public static int getRowCount() {
+	public static int getRowCount() {//to get row count from excel sheet
 		int rowCount=0;
 		try {
 			rowCount = sheet.getPhysicalNumberOfRows();
@@ -27,7 +27,7 @@ public class ExcelUtils {
 		}
 		return rowCount;
 	}
-	public static int getColCount() {
+	public static int getColCount() {//to get the column count from the excel sheet 
 		int colCount=0;
 		try {
 			colCount = sheet.getRow(0).getPhysicalNumberOfCells();
@@ -38,7 +38,7 @@ public class ExcelUtils {
 		}
 		return colCount;
 	}
-	public static String getCellDataString(int rowNum , int colNum) {
+	public static String getCellDataString(int rowNum , int colNum) {//to get the string data from excel file (username)
 		String cellData=null;
 		try {
 			cellData = sheet.getRow(rowNum).getCell(colNum).getStringCellValue();
@@ -49,7 +49,7 @@ public class ExcelUtils {
 		}
 		return cellData;
 	}
-	public static double getCellDataNumber(int rowNum , int colNum) {
+	public static double getCellDataNumber(int rowNum , int colNum) {//to get the numerical value from the excel file(password)
 		double cellData=0; 
 		try {
 			cellData = sheet.getRow(rowNum).getCell(colNum).getNumericCellValue();
